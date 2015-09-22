@@ -3,7 +3,7 @@
 set -e
 
 sudo apt-get update
-sudo apt-get install -y build-essential autoconf libtool gettext automake
+sudo apt-get install -y wget build-essential autoconf libtool gettext automake
 
 cd /tmp/mono
 
