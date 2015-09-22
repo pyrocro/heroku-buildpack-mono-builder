@@ -1,0 +1,11 @@
+dependencies:
+  cache_directories:
+    - mono-git
+  override:
+    - git clone https://github.com/mono/mono.git mono-git
+    - pushd mono-git
+    - git checkout 9e59d35315
+    - popd
+test:
+  override:
+    - echo "no build steps yet!"
