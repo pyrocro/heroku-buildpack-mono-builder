@@ -1,6 +1,4 @@
 machine:
-  node:
-    version: 4.x
   services:
     - docker
 dependencies:
