@@ -4,7 +4,7 @@ dependencies:
   override:
     - git clone https://github.com/mono/mono.git mono-git
     - pushd mono-git
-    - git checkout 9e59d35315
+    - git checkout -f 9e59d35315
     - popd
 test:
   override:
