@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 cd ~
 tar cfz mono.tar.gz mono
 mkdir x
