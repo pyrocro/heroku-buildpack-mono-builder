@@ -1,12 +1,12 @@
 machine:
   pre:
-    - mkdir -p /git/mono/mono
+    - mkdir -p ~/git/mono/mono
 dependencies:
   cache_directories:
-    - /git/mono/mono
+    - ~/git/mono/mono
   override:
     - ./clone-if-not-exists
-    - pushd /git/mono/mono
+    - pushd ~/git/mono/mono
     - git pull
     - git checkout -f 9e59d35315
     - popd
@@ -14,7 +14,7 @@ test:
   override:
     - echo "no build steps yet!"
   post:
-    - pushd /git/mono/mono
+    - pushd ~/git/mono/mono
     - git rm -rf .
     - git clean -fxd
     - popd
