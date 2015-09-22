@@ -3,7 +3,8 @@
 set -e
 VERSION=`cat ./latest`
 
-cd ~
+pushd
+
 tar cfz mono.tar.gz mono
 
 cp mono.tar.gz $CIRCLE_ARTIFACTS
@@ -16,21 +17,10 @@ cd heroku-buildpack-mono
 echo $VERSION>latest
 git add latest
 git commit -m "built mono version $VERSION."
-git tag -l $VERSION
+git tag $VERSION
 git push
 git push --tags
 
-curl -L --silent https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 | tar x --bzip2
-./bin/linux/amd64/github-release release \
-    --user AdamBurgess \
-    --repo heroku-buildpack-mono \
-    --tag $VERSION \
-    --name "mono build $VERSION" \
-    --description "automated build"
+popd
 
-./bin/linux/amd64/github-release upload \
-    --user AdamBurgess \
-    --repo heroku-buildpack-mono \
-    --tag $VERSION \
-    --name "mono-$VERSION.tar.gz" \
-    --file ../mono.tar.gz
+node deploy-to-github $VERSION $HOME/mono.tar.gz

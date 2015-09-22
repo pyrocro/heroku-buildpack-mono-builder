@@ -1,10 +1,12 @@
 machine:
+  node:
+    version: 4.x
   services:
     - docker
 dependencies:
   cache_directories:
     - ~/git/mono/mono/.git
-  override:
+  pre:
     - ./clone-if-not-exists
     - ./pull
 test:
