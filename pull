@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ~/git/mono/mono
+git pull
+git checkout -f 9e59d35315

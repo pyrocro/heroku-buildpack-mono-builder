@@ -6,15 +6,9 @@ dependencies:
     - ~/git/mono/mono
   override:
     - ./clone-if-not-exists
-    - pushd ~/git/mono/mono
-    - git pull
-    - git checkout -f 9e59d35315
-    - popd
+    - ./pull
 test:
   override:
     - echo "no build steps yet!"
   post:
-    - pushd ~/git/mono/mono
-    - git rm -rf .
-    - git clean -fxd
-    - popd
+    - ./clean

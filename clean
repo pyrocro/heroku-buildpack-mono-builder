@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ~/git/mono/mono
+git rm -rf .
+git clean -fxd
