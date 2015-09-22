@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd ~/git/mono/mono
-mkdir -p /app/mono
+
 MONO_PREFIX=/app/mono
 export DYLD_FALLBACK_LIBRARY_PATH=$MONO_PREFIX/lib:$DYLD_LIBRARY_FALLBACK_PATH
 export LD_LIBRARY_PATH=$MONO_PREFIX/lib:$LD_LIBRARY_PATH

@@ -1,3 +1,6 @@
+machine:
+  services:
+    - docker
 dependencies:
   cache_directories:
     - ~/git/mono/mono/.git
@@ -6,4 +9,4 @@ dependencies:
     - ./pull
 test:
   override:
-    - ./build
+    - docker run -v ~/git/mono/mono:/tmp/mono heroku/cedar:14 ls /tmp/mono
