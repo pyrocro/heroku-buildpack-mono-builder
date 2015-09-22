@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [ ! -d "mono-git" ]; then
+  git clone https://github.com/mono/mono.git mono-git
+fi
