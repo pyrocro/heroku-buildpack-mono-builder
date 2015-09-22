@@ -17,6 +17,6 @@ git checkout -b gh-pages
 mv ../mono.tar.gz ./
 git add mono.tar.gz
 
-VERSION=`git --git-dir=~/git/mono/mono/.git rev-parse --short HEAD`
+VERSION=`git --git-dir=$HOME/git/mono/mono/.git rev-parse --short HEAD`
 git commit -m "built mono version $VERSION."
 git push -f origin gh-pages 
