@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/git/mono/mono
+cd /tmp/mono
 
 MONO_PREFIX=/app/mono
 export DYLD_FALLBACK_LIBRARY_PATH=$MONO_PREFIX/lib:$DYLD_LIBRARY_FALLBACK_PATH
@@ -14,6 +14,3 @@ export PATH=$MONO_PREFIX/bin:$PATH
 make get-monolite-latest
 make -j4
 make install
-
-mkdir -p $CIRCLE_ARTIFACTS/mono
-mv /app/mono $CIRCLE_ARTIFACTS/mono

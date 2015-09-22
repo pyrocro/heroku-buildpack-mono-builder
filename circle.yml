@@ -9,4 +9,5 @@ dependencies:
     - ./pull
 test:
   override:
-    - docker run -v ~/git/mono/mono:/tmp/mono heroku/cedar:14 ls /tmp/mono 
+    - ./docker
+    
