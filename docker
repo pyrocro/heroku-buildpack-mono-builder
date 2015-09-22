@@ -3,10 +3,10 @@
 docker run \
     -v ~/git/mono/mono:/tmp/mono \
     -v $PWD/build:/build \
-    -v ~/output:/app/mono \
+    -v ~/mono:/app/mono \
     ubuntu:14.04 \
-    bash -c "sudo apt-get update; sudo apt-get install -y build-essential autoconf libtool gettext automake; bash /build"
+    "bash /build"
 
 cd ~
-tar -zcvf mono.tar.gz output
+tar -zcvf mono.tar.gz mono
 mv mono.tar.gz $CIRCLE_ARTIFACTS
