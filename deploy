@@ -1,22 +1,34 @@
 #!/bin/bash
 
 set -e
+VERSION=`cat ./latest`
 
 cd ~
 tar cfz mono.tar.gz mono
-mkdir x
-cd x
 
-git init
 git config --global user.email "AdamBurgess@users.noreply.github.com"
 git config --global user.name "Adam Burgess"
-git remote add origin git@github.com:AdamBurgess/heroku-buildpack-mono.git
+git clone git@github.com:AdamBurgess/heroku-buildpack-mono.git
+cd heroku-buildpack-mono
 
-git checkout -b gh-pages
-
-mv ../mono.tar.gz ./
-git add mono.tar.gz
-
-VERSION=`git --git-dir=$HOME/git/mono/mono/.git rev-parse --short HEAD`
+echo $VERSION>latest
+git add latest
 git commit -m "built mono version $VERSION."
-git push -f origin gh-pages 
+git tag -l $VERSION
+git push
+git push --tags
+
+curl -L --silent https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 | tar x --bzip2
+./bin/linux/amd64/github-release release \
+    --user AdamBurgess \
+    --repo heroku-buildpack-mono \
+    --tag $VERSION \
+    --name "mono build $VERSION" \
+    --description "automated build"
+
+./bin/linux/amd64/github-release upload \
+    --user AdamBurgess \
+    --repo heroku-buildpack-mono \
+    --tag $VERSION \
+    --name "mono-$VERSION.tar.gz" \
+    --file ../mono.tar.gz
