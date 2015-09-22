@@ -1,14 +1,9 @@
-machine:
-  pre:
-    - mkdir -p ~/git/mono/mono
 dependencies:
   cache_directories:
-    - ~/git/mono/mono
+    - ~/git/mono/mono/.git
   override:
     - ./clone-if-not-exists
     - ./pull
 test:
   override:
     - echo "no build steps yet!"
-  post:
-    - ./clean
