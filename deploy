@@ -19,4 +19,4 @@ git add mono.tar.gz
 
 VERSION=`git --git-dir=~/git/mono/mono/.git rev-parse --short HEAD`
 git commit -m "built mono version $VERSION."
-git push -f origin gh-pages
+git push -f origin gh-pages 
