@@ -6,6 +6,8 @@ VERSION=`cat ./latest`
 cd ~
 tar cfz mono.tar.gz mono
 
+cp mono.tar.gz $CIRCLE_ARTIFACTS
+
 git config --global user.email "AdamBurgess@users.noreply.github.com"
 git config --global user.name "Adam Burgess"
 git clone git@github.com:AdamBurgess/heroku-buildpack-mono.git
