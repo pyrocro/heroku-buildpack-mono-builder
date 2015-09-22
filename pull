@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cur=$PWD
 cd ~/git/mono/mono
 git pull
-git checkout -f `cat latest`
+git checkout -f `cat $cur/latest`
