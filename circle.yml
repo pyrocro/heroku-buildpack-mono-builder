@@ -10,4 +10,8 @@ dependencies:
 test:
   override:
     - ./docker
-    
+deployment:
+  github:
+    branch: master
+    commands:
+      - ./deploy

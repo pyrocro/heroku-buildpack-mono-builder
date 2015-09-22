@@ -5,8 +5,4 @@ docker run \
     -v $PWD/build:/build \
     -v ~/mono:/app/mono \
     ubuntu:14.04 \
-    "bash /build"
-
-cd ~
-tar -zcvf mono.tar.gz mono
-mv mono.tar.gz $CIRCLE_ARTIFACTS
+    bash /build
