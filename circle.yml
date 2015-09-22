@@ -6,4 +6,4 @@ dependencies:
     - ./pull
 test:
   override:
-    - echo "no build steps yet!"
+    - ./build
