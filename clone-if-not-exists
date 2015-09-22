@@ -1,5 +1,5 @@
 #!/bin/bash
 
-if [ ! -d "~/git/mono/mono" ]; then
+if [[ ! -e "~/git/mono/mono" ]]; then
   git clone https://github.com/mono/mono.git ~/git/mono/mono
 fi
