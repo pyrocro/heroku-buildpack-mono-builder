@@ -3,7 +3,7 @@
 set -e
 VERSION=`cat ./latest`
 
-pushd
+cd ~
 
 tar cfz mono.tar.gz mono
 
@@ -21,6 +21,10 @@ git tag $VERSION
 git push
 git push --tags
 
-popd
+mv ../mono.tar.gz ./mono-$VERSION.tar.gz
 
-node deploy-to-github $VERSION $HOME/mono.tar.gz
+go get github.com/tcnksm/ghr
+ghr \
+    -u AdamBurgess \
+    -r heroku-buildpack-mono \
+    $VERSION mono-$VERSION.tar.gz
