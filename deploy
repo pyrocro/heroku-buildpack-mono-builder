@@ -31,8 +31,8 @@ mv mono2 x/mono
 cd x
 # smaller build, ~52mb compressed
 tar cfz ../mono.tar.gz mono
-cp mono.tar.gz $CIRCLE_ARTIFACTS
 cd ..
+cp mono.tar.gz $CIRCLE_ARTIFACTS
 
 git config --global user.email "AdamBurgess@users.noreply.github.com"
 git config --global user.name "Adam Burgess"
@@ -46,11 +46,12 @@ git tag $VERSION
 git push
 git push --tags
 
-mv ../mono.tar.gz ./mono-$VERSION.tar.gz
-mv ../mono-full.tar.gz ./mono-full-$VERSION.tar.gz
+mkdir dist
+mv ../mono.tar.gz dist/mono-$VERSION.tar.gz
+mv ../mono-full.tar.gz dist/mono-full-$VERSION.tar.gz
 
 go get github.com/tcnksm/ghr
 ghr \
     -u AdamBurgess \
     -r heroku-buildpack-mono \
-    $VERSION mono-$VERSION.tar.gz mono-full-$VERSION.tar.gz
+    $VERSION dist
