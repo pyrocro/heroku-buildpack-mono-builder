@@ -9,23 +9,30 @@ cd ~
 tar cfz mono-full.tar.gz mono
 cp mono-full.tar.gz $CIRCLE_ARTIFACTS
 
+# mono is read only
+mkdir mono2
+cp mono/* mono2
 # free up space
-rm -f mono/bin/mono-boehm
-rm -f mono/bin/monodis
-rm -f mono/bin/pedump
-rm -f mono/bin/mprof-report
-rm -rf mono/include
-rm -rf mono/share
-rm -f mono/lib/*.a
-rm -f mono/lib/libmonosgen*.so
-rm -f mono/lib/libmonoboehm*.so
-rm -rf mono/lib/monodoc
-rm -rf mono/lib/mono-source-libs
-rm -rf mono/lib/pkgconfig
+rm -f mono2/bin/mono-boehm
+rm -f mono2/bin/monodis
+rm -f mono2/bin/pedump
+rm -f mono2/bin/mprof-report
+rm -rf mono2/include
+rm -rf mono2/share
+rm -f mono2/lib/*.a
+rm -f mono2/lib/libmonosgen*.so
+rm -f mono2/lib/libmonoboehm*.so
+rm -rf mono2/lib/monodoc
+rm -rf mono2/lib/mono-source-libs
+rm -rf mono2/lib/pkgconfig
 
+mkdir x
+mv mono2 x/mono
+cd x
 # smaller build, ~52mb compressed
-tar cfz mono.tar.gz mono
+tar cfz ../mono.tar.gz mono
 cp mono.tar.gz $CIRCLE_ARTIFACTS
+cd ..
 
 git config --global user.email "AdamBurgess@users.noreply.github.com"
 git config --global user.name "Adam Burgess"
