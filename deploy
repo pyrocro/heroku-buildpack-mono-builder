@@ -10,15 +10,15 @@ tar cfz mono-full.tar.gz mono
 cp mono-full.tar.gz $CIRCLE_ARTIFACTS
 
 # free up space
-rm mono/bin/mono-boehm
-rm mono/bin/monodis
-rm mono/bin/pedump
-rm mono/bin/mprof-report
+rm -f mono/bin/mono-boehm
+rm -f mono/bin/monodis
+rm -f mono/bin/pedump
+rm -f mono/bin/mprof-report
 rm -rf mono/include
 rm -rf mono/share
-rm mono/lib/*.a
-rm mono/lib/libmonosgen*.so
-rm mono/lib/libmonoboehm*.so
+rm -f mono/lib/*.a
+rm -f mono/lib/libmonosgen*.so
+rm -f mono/lib/libmonoboehm*.so
 rm -rf mono/lib/monodoc
 rm -rf mono/lib/mono-source-libs
 rm -rf mono/lib/pkgconfig
