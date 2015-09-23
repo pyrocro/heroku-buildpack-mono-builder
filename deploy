@@ -1,12 +1,30 @@
 #!/bin/bash
 
 set -e
-VERSION=`cat ./latest`
-
+VERSION=`cat ./latest | cut -c 1-12`
 cd ~
 
-tar cfz mono.tar.gz mono
 
+# full build, ~115mb compressed
+tar cfz mono-full.tar.gz mono
+cp mono-full.tar.gz $CIRCLE_ARTIFACTS
+
+# free up space
+rm mono/bin/mono-boehm
+rm mono/bin/monodis
+rm mono/bin/pedump
+rm mono/bin/mprof-report
+rm -rf mono/include
+rm -rf mono/share
+rm mono/lib/*.a
+rm mono/lib/libmonosgen*.so
+rm mono/lib/libmonoboehm*.so
+rm -rf mono/lib/monodoc
+rm -rf mono/lib/mono-source-libs
+rm -rf mono/lib/pkgconfig
+
+# smaller build, ~52mb compressed
+tar cfz mono.tar.gz mono
 cp mono.tar.gz $CIRCLE_ARTIFACTS
 
 git config --global user.email "AdamBurgess@users.noreply.github.com"
@@ -22,9 +40,10 @@ git push
 git push --tags
 
 mv ../mono.tar.gz ./mono-$VERSION.tar.gz
+mv ../mono-full.tar.gz ./mono-full-$VERSION.tar.gz
 
 go get github.com/tcnksm/ghr
 ghr \
     -u AdamBurgess \
     -r heroku-buildpack-mono \
-    $VERSION mono-$VERSION.tar.gz
+    $VERSION mono-$VERSION.tar.gz mono-full-$VERSION.tar.gz
