@@ -11,7 +11,7 @@ cp mono-full.tar.gz $CIRCLE_ARTIFACTS
 
 # mono is read only
 mkdir mono2
-cp mono/* mono2
+cp -r mono/* mono2
 # free up space
 rm -f mono2/bin/mono-boehm
 rm -f mono2/bin/monodis
