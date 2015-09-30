@@ -58,4 +58,4 @@ find mono -name sqlmetal.exe -delete
 find mono | xargs strip 2> /dev/null || true
 
 #create the stripped version
-tar cf - mono | pxz -c >/tmp/out/mono.tar.xz
+tar cf - mono | pxz -c >/tmp/out/mono-minimal.tar.xz
