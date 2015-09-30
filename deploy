@@ -39,6 +39,11 @@ git config --global user.name "Adam Burgess"
 git clone git@github.com:AdamBurgess/heroku-buildpack-mono.git
 cd heroku-buildpack-mono
 
+if git rev-parse $VERSION >/dev/null 2>&1
+then
+    git tag -d $VERSION && git push origin :refs/tags/$VERSION
+fi
+
 echo $VERSION>latest
 git add latest
 git commit -m "built mono version $VERSION."
