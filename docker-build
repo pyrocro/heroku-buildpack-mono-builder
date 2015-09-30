@@ -29,7 +29,7 @@ make install
 cd /app
 
 #create the unedited, full archive.
-tar cf - mono|pxz -c>/tmp/out/mono-full.tar.xz
+tar cf - mono | pxz -c >/tmp/out/mono-full.tar.xz
 
 #remove (mostly) unnessary files
 rm -rf mono/lib/mono/gac/EntityFramework* \
@@ -58,4 +58,4 @@ find mono -name sqlmetal.exe -delete
 find mono | xargs strip 2> /dev/null
 
 #create the stripped version
-tar cf - mono|pxz -c>/tmp/out/mono.tar.xz
+tar cf - mono | pxz -c >/tmp/out/mono.tar.xz
