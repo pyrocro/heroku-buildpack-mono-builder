@@ -3,15 +3,14 @@ machine:
     - docker
 dependencies:
   cache_directories:
-    - ~/git/mono/mono/.git
+    - mono/.git
   override:
-    - ./clone-if-not-exists
-    - ./pull
+    - ./get-mono
 test:
   override:
-    - ./docker
+    - ./build-mono
 deployment:
   github:
     branch: master
     commands:
-      - ./deploy
+      - ./deploy-mono

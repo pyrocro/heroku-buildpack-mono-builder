@@ -1,0 +1,61 @@
+#!/bin/bash
+
+set -e
+set -x
+
+sudo apt-get update
+sudo apt-get install -y wget git build-essential autoconf libtool gettext automake pxz
+
+cd /tmp/mono
+
+MONO_PREFIX=/app/mono
+export DYLD_FALLBACK_LIBRARY_PATH=$MONO_PREFIX/lib:$DYLD_LIBRARY_FALLBACK_PATH
+export LD_LIBRARY_PATH=$MONO_PREFIX/lib:$LD_LIBRARY_PATH
+export C_INCLUDE_PATH=$MONO_PREFIX/include
+export ACLOCAL_PATH=$MONO_PREFIX/share/aclocal
+export PKG_CONFIG_PATH=$MONO_PREFIX/lib/pkgconfig
+export PATH=$MONO_PREFIX/bin:$PATH
+
+./autogen.sh
+./configure --prefix=$MONO_PREFIX \
+  --disable-moonlight --disable-nls --enable-minimal=profiler,logging \
+  --disable-libraries --disable-boehm --with-mcs-docs=no \
+  --with-profile2=no
+
+make get-monolite-latest
+make -j4
+make install
+
+cd /app
+
+#create the unedited, full archive.
+tar cf - mono|pxz -c>/tmp/out/mono-full.tar.xz
+
+#remove (mostly) unnessary files
+rm -rf mono/lib/mono/gac/EntityFramework* \
+  mono/lib/mono/gac/System.Windows.Forms* \
+  mono/lib/mono/gac/System.Data.Entity
+
+rm -rf mono/bin/mono-boehm \
+  mono/bin/monodis \
+  mono/bin/pedump \
+  mono/bin/mprof-report \
+  mono/include \
+  mono/share \
+  mono/lib/*.a \
+  mono/lib/libmonosgen*.so \
+  mono/lib/libmonoboehm*.so \
+  mono/lib/monodoc \
+  mono/lib/mono-source-libs \
+  mono/lib/pkgconfig
+
+find . -name "*.mdb" -delete
+find mono -name *Entity* -exec rm -rf "{}" \;
+find mono -name *Entity* -delete
+find mono -name *System.Windows.Forms* -delete
+find mono -name sqlmetal.exe -delete
+
+find mono | xargs strip 2> /dev/null
+
+#create the stripped version
+tar cf - mono|pxz -c>/tmp/out/mono.tar.xz

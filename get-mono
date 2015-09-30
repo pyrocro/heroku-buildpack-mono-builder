@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+set -x
+
+VERSION=`cat ./latest | cut -c 1-12`
+
+if [[ ! -e mono ]]; then
+  git clone https://github.com/mono/mono.git mono
+fi
+
+pushd mono
+git pull origin master
+git checkout -f $VERSION
+popd

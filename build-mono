@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+set -x
+
+mkdir out
+
+docker run \
+    -v $PWD/mono:/tmp/mono \
+    -v $PWD/docker-build:/build \
+    -v $PWD/out:/tmp/out \
+    ubuntu:14.04 \
+    bash /build
