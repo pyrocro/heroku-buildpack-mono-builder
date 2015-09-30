@@ -25,6 +25,9 @@ git tag $VERSION
 git push
 git push --tags
 
+# let github sort stuff out
+sleep 5
+
 ghr \
     -u AdamBurgess \
     -r heroku-buildpack-mono \

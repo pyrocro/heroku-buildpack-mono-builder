@@ -4,7 +4,7 @@ set -e
 set -x
 
 sudo apt-get update
-sudo apt-get install -y wget git build-essential autoconf libtool gettext automake pxz binutils
+sudo apt-get install -y wget git build-essential autoconf libtool gettext automake pxz binutils pkg-config
 
 cd /tmp/mono
 
@@ -20,7 +20,6 @@ export PATH=$MONO_PREFIX/bin:$PATH
   --prefix=$MONO_PREFIX \
   --disable-moonlight --disable-nls --enable-minimal=profiler,logging \
   --with-mcs-docs=no --with-profile2=no
-  
 
 make get-monolite-latest
 make -j4
