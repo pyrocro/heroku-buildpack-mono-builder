@@ -2,5 +2,5 @@
 
 cur=$PWD
 cd ~/git/mono/mono
-git pull
+git pull origin master
 git checkout -f `cat $cur/latest`
