@@ -15,7 +15,12 @@ export ACLOCAL_PATH=$MONO_PREFIX/share/aclocal
 export PKG_CONFIG_PATH=$MONO_PREFIX/lib/pkgconfig
 export PATH=$MONO_PREFIX/bin:$PATH
 
-./autogen.sh --prefix=$MONO_PREFIX
+./autogen.sh
+./configure --prefix=$MONO_PREFIX \
+  --disable-moonlight --disable-nls --enable-minimal=aot,profiler,debug,logging \
+  --disable-libraries --disable-boehm --with-mcs-docs=no \
+  --with-profile2=no
+
 make get-monolite-latest
 make -j4
 make install
