@@ -19,8 +19,8 @@ export PATH=$MONO_PREFIX/bin:$PATH
 ./autogen.sh \
   --prefix=$MONO_PREFIX \
   --disable-moonlight --disable-nls --enable-minimal=profiler,logging \
-  --disable-boehm --with-mcs-docs=no \
-  --with-profile2=no
+  --with-mcs-docs=no --with-profile2=no
+  
 
 make get-monolite-latest
 make -j4
