@@ -14,6 +14,6 @@ if [[ ! -e mono ]]; then
 fi
 
 pushd mono
-git pull origin master
+git fetch origin master
 git checkout -f $VERSION
 popd
