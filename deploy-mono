@@ -30,4 +30,5 @@ git push --tags
 ghr \
     -u AdamBurgess \
     -r heroku-buildpack-mono \
+    --delete \
     $VERSION ../out
