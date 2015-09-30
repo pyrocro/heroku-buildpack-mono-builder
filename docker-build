@@ -4,7 +4,8 @@ set -e
 set -x
 
 sudo apt-get update
-sudo apt-get install -y wget git build-essential autoconf libtool gettext automake pxz binutils pkg-config
+sudo apt-get install -y wget git build-essential autoconf libtool gettext automake pxz binutils \
+  pkg-config libcairo2-dev libjpeg-dev libexif-dev libtiff-dev libgif-dev glib-2.0
 
 cd /tmp/mono
 
@@ -23,6 +24,12 @@ export PATH=$MONO_PREFIX/bin:$PATH
 
 make get-monolite-latest
 make -j4
+make install
+
+git clone https://github.com/mono/libgdiplus.git
+cd libgdiplus
+./autogen.sh --prefix=$MONO_PREFIX
+make
 make install
 
 cd /app
