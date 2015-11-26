@@ -3,7 +3,7 @@
 set -e
 set -x
 
-VERSION=`cat ./latest | cut -c 1-12`
+VERSION=`cat ./latest`
 
 cp out/* $CIRCLE_ARTIFACTS
 
