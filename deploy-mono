@@ -19,6 +19,8 @@ then
 fi
 
 echo $VERSION>latest
+git config user.name "Adam Burgess [circleci]"
+git config user.email "email@example.com"
 git add latest
 git commit -m "built mono: $VERSION." || true
 git tag $VERSION
