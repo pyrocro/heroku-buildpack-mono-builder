@@ -5,7 +5,7 @@ set -x
 
 sudo apt-get update
 sudo apt-get install -y wget git build-essential autoconf libtool gettext automake pxz binutils \
-  pkg-config libcairo2-dev libjpeg-dev libexif-dev libtiff-dev libgif-dev glib-2.0
+  pkg-config libcairo2-dev libjpeg-dev libexif-dev libtiff-dev libgif-dev glib-2.0 cmake
 
 cd /tmp/mono
 
