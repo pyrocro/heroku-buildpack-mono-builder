@@ -10,8 +10,6 @@ machine:
     - sudo tar -C /usr/local -xzf download/$GODIST
     - go version
 dependencies:
-  pre:
-    - sudo apt-get update; sudo apt-get upgrade go
   cache_directories:
     - mono/.git
   override:
